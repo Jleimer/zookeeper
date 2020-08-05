@@ -41,7 +41,16 @@ function filterByQuery(query, animalsArray) {
     // return the filtered results:
     return filteredResults;
   }
+ 
+app.get('/api/animals', (req, res) => {
+    let results = animals;
+    if (req.query) {
+      results = filterByQuery(req.query, results);
+    }
+    res.json(results);
+});
 
 app.listen(PORT, () => {
-    console.log('API serrver now a por 3001!');
+    console.log('API server now a port ${PORT}!');
 })
+
